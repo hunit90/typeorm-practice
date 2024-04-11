@@ -6,7 +6,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 export class TypeormConfig implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
-      type: 'mysql',
+      type: 'postgres',
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
