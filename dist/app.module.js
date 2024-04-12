@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_config_1 = require("./config/typeorm.config");
 const config_1 = require("@nestjs/config");
+const user_module_1 = require("./user/user.module");
 const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
 let AppModule = class AppModule {
 };
@@ -25,6 +26,7 @@ exports.AppModule = AppModule = __decorate([
                 envFilePath,
                 isGlobal: true,
             }),
+            user_module_1.UserModule,
         ],
         controllers: [],
         providers: [],

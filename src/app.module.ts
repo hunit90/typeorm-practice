@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeormConfig } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
 
 const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
 
@@ -14,6 +15,7 @@ const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
       envFilePath,
       isGlobal: true,
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],
