@@ -7,9 +7,12 @@ export class User extends CommonEntity {
     email!: string;
 
     @Column()
+    password: string;
+
+    @Column({ nullable: true })
     provider!: string;
 
-    @Column()
+    @Column({ nullable: true })
     providerId!: string;
 
     @Column({ nullable: true })
