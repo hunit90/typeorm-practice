@@ -12,6 +12,9 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_config_1 = require("./config/typeorm.config");
 const config_1 = require("@nestjs/config");
 const user_module_1 = require("./user/user.module");
+const auth_controller_1 = require("./auth/auth.controller");
+const auth_service_1 = require("./auth/auth.service");
+const auth_module_1 = require("./auth/auth.module");
 const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
 let AppModule = class AppModule {
 };
@@ -27,9 +30,10 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             user_module_1.UserModule,
+            auth_module_1.AuthModule,
         ],
-        controllers: [],
-        providers: [],
+        controllers: [auth_controller_1.AuthController],
+        providers: [auth_service_1.AuthService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

@@ -1,6 +1,8 @@
-import {Body, Controller, Get, Post, Req} from '@nestjs/common';
+import {Body, Controller, Get, Post, Req, UnauthorizedException} from '@nestjs/common';
 import { UserService } from './user.service';
+import { Request } from 'express';
 import {CreateUserDto} from "./dto/create-user.dto";
+import {JwtUserDto} from "../auth/dto/jwt-user.dto";
 
 @Controller('user')
 export class UserController {
@@ -14,8 +16,14 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get('/')
-  find() {
-    return 1;
+  @Get('me')
+  async findMe(@Req() req: Request) {
+    const user = req.user as JwtUserDto;
+
+    if(!user) {
+      throw new UnauthorizedException();
+    }
+
+    return this.userService.findById(user.id);
   }
 }

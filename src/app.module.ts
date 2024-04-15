@@ -3,6 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeormConfig } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
 
@@ -16,8 +19,9 @@ const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
       isGlobal: true,
     }),
     UserModule,
+    AuthModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AuthController],
+  providers: [AuthService],
 })
 export class AppModule {}

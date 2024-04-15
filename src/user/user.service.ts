@@ -19,4 +19,8 @@ export class UserService {
         });
         return this.userRepository.save(user);
     }
+
+    async findById(id: number) {
+        return this.userRepository.findOne({ where: { id } })
+    }
 }
