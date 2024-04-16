@@ -60,7 +60,10 @@ export class AuthService {
             HASH_ROUNDS,
         );
 
-        const newUser = await this.userService.create(user);
+        const newUser = await this.userService.create({
+            ...user,
+            password: hash,
+        });
 
         return this.loginUser(newUser);
     }
