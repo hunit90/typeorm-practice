@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import {JwtService} from "@nestjs/jwt";
 
 const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
 
@@ -22,6 +23,6 @@ const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
     AuthModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, JwtService],
 })
 export class AppModule {}

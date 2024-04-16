@@ -15,6 +15,7 @@ const user_module_1 = require("./user/user.module");
 const auth_controller_1 = require("./auth/auth.controller");
 const auth_service_1 = require("./auth/auth.service");
 const auth_module_1 = require("./auth/auth.module");
+const jwt_1 = require("@nestjs/jwt");
 const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.dev';
 let AppModule = class AppModule {
 };
@@ -33,7 +34,7 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
         ],
         controllers: [auth_controller_1.AuthController],
-        providers: [auth_service_1.AuthService],
+        providers: [auth_service_1.AuthService, jwt_1.JwtService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
