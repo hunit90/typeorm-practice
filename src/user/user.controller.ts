@@ -3,7 +3,9 @@ import { UserService } from './user.service';
 import { Request } from 'express';
 import {CreateUserDto} from "./dto/create-user.dto";
 import {JwtUserDto} from "../auth/dto/jwt-user.dto";
+import {ApiTags} from "@nestjs/swagger";
 
+@ApiTags('users')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
