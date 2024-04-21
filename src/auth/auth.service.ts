@@ -44,6 +44,26 @@ export class AuthService {
         }
     }
 
+    verifyToken(token: string) {
+        return this.jwtService.verify(token, {
+            secret: JWT_SECRET,
+        });
+    }
+
+    rotateToken(token: string, isRefresh: boolean) {
+        const decoded = this.jwtService.verify(token, {
+            secret: JWT_SECRET,
+        });
+
+        if (decoded.type !== 'refresh') {
+            throw new UnauthorizedException('토큰 재발급은 Refresh 토큰으로만 가능합니다.')
+        }
+
+        return this.signToken({
+            ...decoded,
+        }, isRefresh);
+    }
+
     signToken(user: Pick<User, 'email' | 'id'>, isRefreshToken: boolean) {
         const payload = {
             email: user.email,
