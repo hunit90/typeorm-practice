@@ -1,4 +1,4 @@
-import {Body, Controller, Post, Headers} from '@nestjs/common';
+import {Body, Controller, Post, Headers, Param, ParseIntPipe} from '@nestjs/common';
 import {AuthService} from "./auth.service";
 import {ApiTags} from "@nestjs/swagger";
 
@@ -52,5 +52,11 @@ export class AuthController {
         return this.authService.registerWithEmail({
             nickname, email, password
         })
+    }
+
+    @Post('mock-login/:id')
+    async mockLogin(
+        @Param('id', ParseIntPipe) id: number,
+    ) {
     }
 }
